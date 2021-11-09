@@ -74,7 +74,7 @@ def add_to_cart(req, product_id):
         cur_cart = req.session.get('cart')
         if len(cur_cart) >= 100:
             messages.info(req, "Cart is full (MAX 100)")
-            cur_cart = cur_cart[:100]
+            cur_cart = cur_cart[:99]
             req.session['cart'] = cur_cart
         cur_cart.append(product_id)
         req.session['cart'] = cur_cart
