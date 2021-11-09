@@ -1,0 +1,13 @@
+{% include "header.html" %}
+{% block content %}
+<div class="cart_div">
+    <div class="cart_info">
+        <h3>Cart</h3>
+        {% if request.session.cart %}
+            <p> Your cart:</p>
+        {% else %}
+            <p> Your cart is empty </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

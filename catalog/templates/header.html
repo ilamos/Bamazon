@@ -1,0 +1,44 @@
+{% block content %}
+<head>
+    <title>Bamazon</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="header_div">
+        <span class="header_span">
+            <a href="/catalog/"><h2 class="header_text"> Bamazon </h2></a>
+            <h4 class="header_text"> #1 online store </h4>
+        </span>
+        {% if user.is_authenticated %}
+            <span class="header_span header_right">
+                <button onclick="window.location.href='/catalog/logout'">Logout</button>
+            </span>
+            <span class="header_span header_right">
+                <p class="header_text">Welcome {{user.username}}!</p>
+            </span>
+        {% else %}
+            <span class="header_span header_right">
+                <a href="/catalog/login">Login</a>
+            </span>
+            <span class="header_span header_right">
+                <a href="/catalog/register">Register</a>
+            </span>
+        {% endif %}
+        <span class="header_cart header_right">
+            {% if request.session.cart %}
+                <a href="/catalog/cart"><p class="header_text">Cart ({{ request.session.cart_sz }}) </p></a>
+            {% else %}
+                <a href="/catalog/cart"><p class="header_text"> Cart (Empty) </p></a>
+            {% endif %}
+        </span>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+{% endblock %}
