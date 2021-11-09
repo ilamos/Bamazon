@@ -1,9 +1,13 @@
 # Bamazon
- Non functional e-commerce website made to learn Django.
+ Part functional e-commerce website made to learn Django.
 
 # Features
- Login & Register
+ Login & Register <br>
  Adding to cart
+ 
+# Requirements
+  Django <br>
+  Crisp forms
  
 # Images
 
