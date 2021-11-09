@@ -93,6 +93,10 @@ a {
     max-height: 50px;
     float:right;
 }
+.cart_remove {
+    padding-top: 15px;
+    float: right;
+}
 .cart_desc {
     display: inline-block;
     padding-top: 15px;

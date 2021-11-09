@@ -17,6 +17,9 @@
             <span class="cart_desc">
                 {{ product.title }}
             </span>
+            <span class="cart_remove"><a href="/catalog/remove_cart/{{ product.id }}">
+                Remove
+            </span></a>
             <img class="cart_image" src="{{product.image_source}}">
             </img>
         </div>

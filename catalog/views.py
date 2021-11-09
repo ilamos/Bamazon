@@ -90,9 +90,21 @@ def calculate_cart_price(cart):
 
 def cart(req):
     cart_products = []
-    for prod in req.session.get('cart'):
-        cart_products.append(Product.objects.get(pk=prod))
+    if req.session.get('cart'):
+        for prod in req.session.get('cart'):
+            cart_products.append(Product.objects.get(pk=prod))
     return render(req, 'cart.html', {"cart" : cart_products, "sum_price": calculate_cart_price(cart_products)})
+
+def remove_cart(req, item_id):
+    if not req.session.get('cart'):
+        req.session['cart'] = []
+        req.session['cart_sz'] = 1
+    else:
+        cur_cart = req.session.get('cart')
+        cur_cart.remove(item_id)
+        req.session['cart'] = cur_cart
+        req.session['cart_sz'] = len(cur_cart)
+    return redirect(req.META.get('HTTP_REFERER'))
 
 def product_by_id(req, product_id):
     try:
