@@ -72,16 +72,26 @@ def add_to_cart(req, product_id):
         req.session['cart_sz'] = 1
     else:
         cur_cart = req.session.get('cart')
+        if len(cur_cart) >= 100:
+            messages.info(req, "Cart is full (MAX 100)")
+            cur_cart = cur_cart[:100]
+            req.session['cart'] = cur_cart
         cur_cart.append(product_id)
         req.session['cart'] = cur_cart
         req.session['cart_sz'] = len(cur_cart)
     return redirect(req.META.get('HTTP_REFERER'))
 
+def calculate_cart_price(cart):
+    price = 0
+    for product in cart:
+        price += product.price
+    return price
+
 def cart(req):
     cart_products = []
     for prod in req.session.get('cart'):
         cart_products.append(Product.objects.get(pk=prod))
-    return render(req, 'cart.html', {"cart" : cart_products})
+    return render(req, 'cart.html', {"cart" : cart_products, "sum_price": calculate_cart_price(cart_products)})
 
 def product_by_id(req, product_id):
     try:

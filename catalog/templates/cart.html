@@ -4,6 +4,7 @@
     <div class="cart_info">
         <h3>Cart</h3>
         {% if request.session.cart %}
+            <p> Subtotal: {{ sum_price }} €</p>
             <p> Your cart:</p>
         {% else %}
             <p> Your cart is empty </p>
