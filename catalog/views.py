@@ -85,7 +85,8 @@ def calculate_cart_price(cart):
     price = 0
     for product in cart:
         price += product.price
-    return price
+        
+    return round(price, 2)
 
 def cart(req):
     cart_products = []
