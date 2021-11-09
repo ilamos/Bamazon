@@ -3,7 +3,7 @@
 
 # Features
   Login & Register <br>
-  Adding to cart
+  Adding & Removing to/from cart
  
 # Requirements
   Django <br>
