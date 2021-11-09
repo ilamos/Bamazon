@@ -78,7 +78,10 @@ def add_to_cart(req, product_id):
     return redirect(req.META.get('HTTP_REFERER'))
 
 def cart(req):
-    return render(req, 'cart.html', {})
+    cart_products = []
+    for prod in req.session.get('cart'):
+        cart_products.append(Product.objects.get(pk=prod))
+    return render(req, 'cart.html', {"cart" : cart_products})
 
 def product_by_id(req, product_id):
     try:

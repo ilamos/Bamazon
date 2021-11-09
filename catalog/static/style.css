@@ -22,6 +22,7 @@
     max-height: 200px;
     margin-left: 10px;
     margin-bottom: 0px;
+    margin-top: 10px;
 }
 .align_bottom {
     vertical-align: bottom;
@@ -73,15 +74,38 @@ a {
     padding-top: 10px;
     margin: 0 auto;
     margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     min-width: 600px;
     min-height: 20px;
     max-width: 1000px;
     border: 1px solid black;
-    background-color: rgb(174, 174, 174);
+    background-color: rgb(255, 255, 255);
     border-radius: 3px;
     display: block;
 }
 .cart_info {
     margin-left: 10px;
     display: block;
+}
+
+.cart_image {
+    max-height: 50px;
+    float:right;
+}
+.cart_desc {
+    display: inline-block;
+    padding-top: 15px;
+}
+
+.cart_price {
+    display:inline-block;
+    position: absolute;
+    margin-left: 30%;
+}
+
+.cart_product {
+    min-height: 50px;
+    max-height: 50px;
+    border-top: 1px solid black;
 }

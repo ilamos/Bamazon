@@ -8,6 +8,18 @@
         {% else %}
             <p> Your cart is empty </p>
         {% endif %}
+        {% for product in cart %}
+        <div class="cart_product">
+            <span class="cart_price cart_desc">
+                {{ product.price}}
+            </span>
+            <span class="cart_desc">
+                {{ product.title }}
+            </span>
+            <img class="cart_image" src="{{product.image_source}}">
+            </img>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
