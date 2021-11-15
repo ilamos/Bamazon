@@ -4,6 +4,7 @@
 # Features
   Login & Register <br>
   Adding & Removing to/from cart
+  Product search
  
 # Requirements
   Django <br>
