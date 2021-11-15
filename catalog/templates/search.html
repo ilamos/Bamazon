@@ -1,0 +1,24 @@
+{% include "header.html" %}
+{% block content %}
+{% if show_search %}
+<div class="user_container">
+    <div class="user_div">
+            <form method="POST">
+                {% csrf_token %}
+                {{form}}
+                <button class="button_main">GO!</button>
+            </form>
+    </div>
+</div>
+{% else %}
+{% if no_results %}
+<div class="user_container">
+    <div class="user_div">
+        <h2>No results for query: {{ query }}</h2>
+    </div>
+</div>
+{% else %}
+    {{ results|safe }}
+{% endif %}
+{% endif %}
+{% endblock %}

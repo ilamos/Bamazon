@@ -1,9 +1,11 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.forms.forms import Form
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, request
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import NewUserForm
+from .forms import SearchForm
 
 from .models import Product
 # Create your views here.
@@ -47,6 +49,27 @@ def register_req(req):
         messages.error(req, "Error while registering")
     form = NewUserForm()
     return render(req, "register.html", {"register_form":form})
+
+def search_req(req):
+    if req.method == "POST":
+        form = SearchForm(req.POST)
+        if form.is_valid():
+            search_q = form.cleaned_data.get("search_query")
+            print("[SEARCH] Search submitted with query: " + search_q)
+            product_list = Product.objects.filter(title__icontains=search_q)
+            product_string = '<div class="product_container">'
+            prod_count = 0
+            for product in product_list:
+                prod_count += 1
+                product_string += generate_product(product.title, product.price, product.image_source, product.id)
+                if prod_count == 3:
+                    product_string += '</div><div class="product_container">'
+                    prod_count = 0
+            messages.info(req, "Searched successfully")
+            return render(req, "search.html", {"show_search": False, "results": product_string, "no_results": (len(product_list) == 0), "query": search_q})
+        messages.error(req, "Search error")
+    form = SearchForm()
+    return render(req, "search.html", {"form": form, "show_search": True})
 
 def login_req(req):
     if req.method == "POST":
