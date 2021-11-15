@@ -1,13 +1,15 @@
 {% include "header.html" %}
 {% block content %}
 {% load crispy_forms_tags %}
-<div class="container py-5">
-    <h2> Register </h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ register_form |crispy }}
-        <button class="btn btn-primary" type="submit">Register</button>
-    </form>
+<div class="user_container">
+    <div class="user_div">
+        <h2> Register </h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ register_form |crispy }}
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+    </div>
 </div>
 
 {% endblock %}

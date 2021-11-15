@@ -3,5 +3,20 @@
     <title> {{ Product.title}} </title>
 </head>
 <body>
-    {{product | safe}}
+    <div class="product_bg">
+        <div class="product_info_container">
+            <div class="product_div">
+                <a href="/catalog/product/{{ product.id }}">
+                    <h3 class="product_title">{{ product.title }}</h3>
+                    <h4 class="product_price">{{ product.price }} €</h4>
+                    <div class="align_bottom">
+                        <center>
+                            <img class="product_img" src="{{ product.image_source }}"> </img>
+                        </center>
+                    </div>
+                    </a>
+                <button class="button_main" onclick="window.location.href='/catalog/add_cart/{{ product.id }}'">Add to cart</button>
+            </div>
+        </div>
+    </div>
 </body>

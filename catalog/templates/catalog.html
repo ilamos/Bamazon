@@ -1,7 +1,6 @@
 {% include "header.html" %}
 {% block content %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-<h3> Product list </h3>
-{{ product_list | safe }}
+<div class="product_bg">
+    {{ product_list | safe }}
+</div>
 {% endblock %}

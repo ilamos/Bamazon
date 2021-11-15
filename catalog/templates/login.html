@@ -3,14 +3,16 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div>
-    <h2> Login </h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ login_form|crispy }}
-        <button type="submit">Login</button>
-    </form>
-    <p> Don't have an account? <a href="/catalog/register">Create one!</a></p>
+<div class="user_container">
+    <div class="user_div">
+        <h2> Login </h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ login_form|crispy }}
+            <button class="button_main" type="submit">Login</button>
+        </form>
+        <p> Don't have an account? <a href="/catalog/register">Create one!</a></p>
+    </div>
 </div>
 
 {% endblock %}

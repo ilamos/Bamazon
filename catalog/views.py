@@ -10,25 +10,30 @@ from .models import Product
 
 def generate_product(title, price, imagesource, id):
     return f"""
-            <span class="product_span">
+            <div class="product_div">
                 <a href="/catalog/product/{id}">
                     <h3 class="product_title">{title}</h3>
-                    <h4 class="product_price">Price: {price} €</h4>
+                    <h4 class="product_price">{price} €</h4>
                     <span class="align_bottom">
                         <center>
                             <img class="product_img" src="{imagesource}"> </img>
                         </center>
                     </span>
                     </a>
-                    <button onclick="window.location.href='/catalog/add_cart/{id}'">Add to cart</button>
-            </span>
+                    <button class="button_main" onclick="window.location.href='/catalog/add_cart/{id}'">Add to cart</button>
+            </div>
             """
 
 def index(req):
-    product_list = Product.objects.all()
-    product_string = ""
+    product_list = Product.objects.all()[:12]
+    product_string = '<div class="product_container">'
+    prod_count = 0
     for product in product_list:
+        prod_count += 1
         product_string += generate_product(product.title, product.price, product.image_source, product.id)
+        if prod_count == 3:
+            product_string += '</div><div class="product_container">'
+            prod_count = 0
     return render(req, 'catalog.html', {'product_list': product_string})
 
 def register_req(req):
@@ -73,9 +78,10 @@ def add_to_cart(req, product_id):
     else:
         cur_cart = req.session.get('cart')
         if len(cur_cart) >= 100:
-            messages.info(req, "Cart is full (MAX 100)")
+            messages.error(req, "Cart is full (MAX 100)")
             cur_cart = cur_cart[:99]
             req.session['cart'] = cur_cart
+            return redirect(req.META.get('HTTP_REFERER'))
         cur_cart.append(product_id)
         req.session['cart'] = cur_cart
         req.session['cart_sz'] = len(cur_cart)
@@ -92,7 +98,10 @@ def cart(req):
     cart_products = []
     if req.session.get('cart'):
         for prod in req.session.get('cart'):
-            cart_products.append(Product.objects.get(pk=prod))
+            cur_prod = Product.objects.get(pk=prod)
+            if len(cur_prod.title) > 30:
+                cur_prod.title = cur_prod.title[:29] + "..."
+            cart_products.append(cur_prod)
     return render(req, 'cart.html', {"cart" : cart_products, "sum_price": calculate_cart_price(cart_products)})
 
 def remove_cart(req, item_id):
@@ -114,4 +123,4 @@ def product_by_id(req, product_id):
     if not product:
         return HttpResponse("Product not found")
     else:
-        return render(req, 'product_info.html', {'product': generate_product(product.title, product.price, product.image_source, product.id)})
+        return render(req, 'product_info.html', {'product': product})

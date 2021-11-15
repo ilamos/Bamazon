@@ -3,27 +3,52 @@
     margin: 0px;
     padding: 0px;
 }
-
-.product_span {
-    display: inline-block;
-    vertical-align: top;
+.product_container {
+    display: flex;
+    max-width: 100%;
+}
+.product_info_container {
+    display: flex;
+    justify-content: center;
+}
+.product_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    flex-grow: 1;
     margin: 0px;
     padding: 0px;
-    max-width: 300px;
-    max-height: 600px;
-    min-height: 300px;
+    max-width: 40%;
     border-radius: 2px;
-    border: 1px solid black;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin: 10px;
 } 
+
+body {
+    background-color: rgb(196, 196, 196);
+    height: 100%;
+}
+
 .product_img {
     max-width: 200px;
     max-height: 200px;
     margin-left: 10px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     margin-top: 10px;
 }
+
+.button_main {
+    background-color: rgb(0, 206, 0);
+    border: 0;
+    padding: 5px;
+}
+
+.button_main:hover {
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
 .align_bottom {
     vertical-align: bottom;
     position: relative;
@@ -46,6 +71,18 @@
     border-bottom: 1px solid black;
 }
 
+.user_container {
+    display: flex;
+    justify-content: center;
+}
+
+.user_div {
+    margin-top: 20px;
+    background-color: white;
+    justify-content: center;
+    padding: 10px;
+}
+
 .header_text {
     margin: 0px;
     padding: 0px;
@@ -53,7 +90,8 @@
 
 .header_div {
     max-height: 50px;
-    border-bottom: 1px solid black;
+    border-bottom: 5px solid black;
+    background-color: white;
 }
 
 .header_right {
@@ -67,7 +105,7 @@
 }
 a {
     text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 .cart_div {
@@ -96,6 +134,14 @@ a {
 .cart_remove {
     padding-top: 15px;
     float: right;
+}
+.info {
+    background: rgb(94, 177, 255);
+    color: black;
+}
+.error {
+    background: rgb(255, 66, 66);
+    color: black;
 }
 .cart_desc {
     display: inline-block;
