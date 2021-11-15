@@ -3,7 +3,7 @@
 
 # Features
   Login & Register <br>
-  Adding & Removing to/from cart
+  Adding & Removing to/from cart <br>
   Product search
  
 # Requirements
