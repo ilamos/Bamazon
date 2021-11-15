@@ -15,5 +15,4 @@
   3. Run server (manage.py runserver)
  
 # Images
-![chrome_nmMkYUbBZd](https://user-images.githubusercontent.com/28509172/140927724-18502236-2d7c-4593-a641-e3e56391bf20.png)
-![chrome_0r0mp1so3b](https://user-images.githubusercontent.com/28509172/140927702-c9619664-71cb-4c2a-9406-b8685a44a1db.png)
+![firefox_tr62C25803](https://user-images.githubusercontent.com/28509172/141785541-24b9f180-51bd-47a9-9904-a2fb5754f57f.png)
